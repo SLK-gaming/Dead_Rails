@@ -3,7 +3,7 @@ local Workspace = game:GetService("Workspace")
 local player = Players.LocalPlayer
 
 -- Tọa độ duy nhất để dịch chuyển tới (có thể thay đổi)
-local teleportLocation = CFrame.new(-253.5, 3.0, -41530.7) -- 30 KM
+local teleportLocation = CFrame.new(-253.5, 3.0, -41530.7)
 
 -- Hàm tìm ghế gần nhất
 local function findClosestVehicleSeat(position)
