@@ -1,0 +1,57 @@
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local player = Players.LocalPlayer
+
+-- Tọa độ duy nhất để dịch chuyển tới (có thể thay đổi)
+local teleportLocation = CFrame.new(-79.999, 4.0, -33613.5)
+
+-- Hàm tìm ghế gần nhất
+local function findClosestVehicleSeat(position)
+    local closestSeat = nil
+    local minDistance = math.huge
+
+    for _, seat in ipairs(Workspace:GetDescendants()) do
+        if seat:IsA("VehicleSeat") then
+            local distance = (position - seat.Position).Magnitude
+            if distance < minDistance then
+                minDistance = distance
+                closestSeat = seat
+            end
+        end
+    end
+    return closestSeat
+end
+
+-- Hàm dịch chuyển
+local function teleportToFixedLocation()
+    local Character = player.Character or player.CharacterAdded:Wait()
+    local HRP = Character:WaitForChild("HumanoidRootPart")
+    local HUM = Character:FindFirstChildOfClass("Humanoid")
+
+    if HRP and HUM then
+        local originalWalkSpeed = HUM.WalkSpeed
+        HUM.WalkSpeed = 0
+        HRP.CFrame = teleportLocation
+        HRP.Anchored = true
+
+        task.wait(2)
+
+        local seat = findClosestVehicleSeat(HRP.Position)
+        if seat then
+            HRP.CFrame = seat.CFrame + Vector3.new(0, 3, 0)
+            task.wait(0.15)
+            HRP.Anchored = false
+            task.wait(0.5)
+            seat:Sit(HUM)
+        else
+            HRP.Anchored = false
+            warn("Không tìm thấy ghế gần vị trí teleport.")
+        end
+
+        task.wait(1)
+        HUM.WalkSpeed = originalWalkSpeed
+    end
+end
+
+-- Gọi tự động ngay khi chạy script
+teleportToFixedLocation()
