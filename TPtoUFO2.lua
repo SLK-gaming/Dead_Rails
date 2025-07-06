@@ -17,11 +17,11 @@ local secondPosition = Vector3.new(904.1, 12.1, -39468.0)
 TeleportTo(firstPosition)
 
 -- Bước 2: Đợi 2 giây rồi chạy script turret bypass
-task.delay(1, function()
+task.delay(2, function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/SLK-gaming/Dead-Rails/refs/heads/main/turretbypass.lua"))()
 
     -- Bước 3: Đợi thêm 2 giây rồi teleport đến tọa độ thứ hai
-    task.delay(1, function()
+    task.delay(2, function()
         TeleportTo(secondPosition)
     end)
 end)
