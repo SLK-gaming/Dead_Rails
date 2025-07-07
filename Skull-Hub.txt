@@ -1,3 +1,8 @@
+-- Like And Subscribe !!
+-- Youtube : https://www.youtube.com/@SLKgamingSSR
+-- Discord : https://discord.gg/wEhTUu2j
+-- ₫%&i1™℅g9₫&#@(?!₫%&π£¶∆ko
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/hungquan99/FluentUI/master/Addons/SaveManager.lua"))()
